@@ -8,7 +8,7 @@ provider "google" {
   zone        = var.zone
 }
 
-resource "google_compute_instance" "my-terragrunt-vm" {
+resource "google_compute_instance" "my-terragrunt-vm-by-github" {
   name         = var.instance_name
   machine_type = var.machine_type
   boot_disk {
