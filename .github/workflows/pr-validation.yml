@@ -1,0 +1,31 @@
+name: Validation
+
+on:
+  repository_dispatch:
+    types: [trigger-validation]
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout CI repo
+        uses: actions/checkout@v2
+        with:
+          repository: UKGEPIC/pro-wfm-dbs-ci
+          ref: ${{ github.event.client_payload.ref }}
+
+      - name: Checkout CD repo
+        uses: actions/checkout@v2
+        with:
+          path: 'cd-repo'
+
+      - name: Ansible Lint
+        uses: ansible/ansible-lint-action@v4.1.0.post0
+        with:
+          targets: '**/*.yml'
+
+      - name: YAML Lint
+        uses: ibiqlik/action-yamllint@v3
