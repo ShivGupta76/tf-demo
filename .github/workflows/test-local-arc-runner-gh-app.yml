@@ -1,4 +1,4 @@
-name: Local-ARC-Runner-Demo
+name: Local-ARC-Runner-gh-app-auth-Demo
 on:
   workflow_dispatch:
 
